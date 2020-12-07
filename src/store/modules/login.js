@@ -3,7 +3,7 @@ export default {
     username: "",
     password: "",
     user: {},
-    isLoggedIn: "",
+    isLoggedIn: false,
   },
   getters: {
     getUser: (state) => state.user,
@@ -22,17 +22,24 @@ export default {
   mutations: {
     login(state, data) {
       state.user = data;
-      localStorage.setItem("isLoggedIn", true);
+      state.isLoggedIn = true;
+      localStorage.setItem("user", JSON.stringify(state.user));
+      localStorage.setItem("isLoggedIn", state.isLoggedIn);
     },
     logout(state) {
       state.user = {};
+      state.isLoggedIn = false;
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("user");
     },
     updateUsername(state, val) {
       state.username = val;
     },
     updatePassword(state, val) {
       state.password = val;
+    },
+    updateIsLoggedIn(state, val) {
+      state.isLoggedIn = val;
     },
   },
 };

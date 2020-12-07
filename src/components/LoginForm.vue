@@ -28,6 +28,7 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
+      isLoggedIn: "isLoggedIn",
     }),
     username: {
       get() {

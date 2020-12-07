@@ -14,12 +14,18 @@ export default {
     Header,
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters({
+      isLoggedIn: "isLoggedIn",
+      user: "getUser",
+    }),
   },
   mounted: function() {
-    if (this.isLoggedIn) {
-      this.$router.push("/profile");
-    }
+    if (localStorage.getItem("isLoggedIn") !== null) {
+      this.$store.state.login.isLoggedIn = JSON.parse(
+        localStorage.getItem("isLoggedIn")
+      );
+      this.$store.state.login.user = JSON.parse(localStorage.getItem("user"));
+    } else return;
   },
 };
 </script>

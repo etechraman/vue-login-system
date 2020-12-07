@@ -28,14 +28,22 @@ export default {
     ...mapGetters({
       isLoggedIn: "isLoggedIn",
     }),
+    isLoggedIn: {
+      get() {
+        return this.$store.state.login.isLoggedIn;
+      },
+      set(val) {
+        this.$store.commit("updateIsLogegdIn", val);
+      },
+    },
   },
   methods: {
-    login() {
-      this.$router.push("login");
-    },
     ...mapActions({
       dologout: "logout",
     }),
+    login() {
+      this.$router.push("login");
+    },
     logout() {
       this.dologout();
       this.$router.push("/");

@@ -14,18 +14,13 @@
 </template>
 
 <script>
-// import Header from "./../components/Header";
+import { mapGetters } from "vuex";
 export default {
   name: "UserProfile",
-  components: {
-    // Header,
-  },
   computed: {
-    user: {
-      get() {
-        return this.$store.state.login.user;
-      },
-    },
+    ...mapGetters({
+      user: "getUser",
+    }),
   },
 };
 </script>
